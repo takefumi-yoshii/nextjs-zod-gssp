@@ -5,8 +5,8 @@ Combining two middleware and data fetch functions into one `getServerSideProps`.
 
 ```tsx
 export const getServerSideProps = composeGssp(
-  // (1) Check Login
-  withLogin,
+  // (1) Check User
+  withUser,
   // (2) Validate Request
   withZod(z.object({ params: z.object({ postId: z.string() }) })),
   // (3) Fetch Data
@@ -22,8 +22,8 @@ Request Validation Middleware throw an exception and display an Error screen if 
 
 ```tsx
 export const getServerSideProps = composeGssp(
-  // (1) Check Login
-  withLogin,
+  // (1) Check User
+  withUser,
   // (2) Validate Request
   withZod(z.object({ params: z.object({ postId: z.string() }) })),
   // (3) Fetch Data: ctx.params.postId certified　 by Zod to be "string".
@@ -35,8 +35,8 @@ export const getServerSideProps = composeGssp(
 
 ```tsx
 export const getServerSideProps = composeGssp(
-  // (1) Check Login
-  withLogin,
+  // (1) Check User
+  withUser,
   // (2) Validate Request
   withZod(
     z.object({
@@ -55,8 +55,8 @@ After applying the login validation middleware, the data fetch function extend `
 
 ```tsx
 export const getServerSideProps = composeGssp(
-  // (1) Check Login: Extending ctx with Login Validation Middleware
-  withLogin,
+  // (1) Check User: Extending ctx with Login Validation Middleware
+  withUser,
   // (2) Validate Request
   withZod(
     z.object({

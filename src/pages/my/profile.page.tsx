@@ -1,5 +1,5 @@
 import { GetServerSidePropsResult } from "next";
-import { composeGssp, withLogin } from "@/lib/next";
+import { composeGssp, withUser } from "@/lib/next";
 
 type Props = { greet: string };
 
@@ -8,7 +8,7 @@ const Page = ({ greet }: Props) => {
 };
 
 export const getServerSideProps = composeGssp(
-  withLogin,
+  withUser,
   async (ctx): Promise<GetServerSidePropsResult<Props>> => ({
     props: { greet: `Hi! ${ctx.user.name}` },
   })

@@ -10,7 +10,7 @@ export const userSchema = z.object({
 
 export type User = z.infer<typeof userSchema>;
 
-export async function withLogin<Ctx extends StrictCtx>(ctx: Ctx) {
+export async function withUser<Ctx extends StrictCtx>(ctx: Ctx) {
   const sess = await getSession(ctx.req, ctx.res);
   const parsed = userSchema.safeParse(sess.user);
   if (!parsed.success) {
